@@ -115,7 +115,7 @@ if __name__ == "__main__":
         new_milestones = all_fcs - set([i.title for i in milestones])
         for m in new_milestones:
             print(repo.create_milestone(title=m))
-        milestones = repo.get_milestones()
+        milestones = list(repo.get_milestones(state="all"))
         formatted_milestones = {i.title: i for i in milestones}
         for action, items in ddiff.items():
             issue_description = None
