@@ -111,11 +111,12 @@ if __name__ == "__main__":
         g = Github(auth=Auth.Token(os.environ.get("GITHUB_TOKEN")))
         # g.get_user().login
         repo = g.get_repo(os.environ.get("REPO_NAME"))
-        milestones = repo.get_milestones()
+        milestones = list(repo.get_milestones(state="all"))
+        existing_titles = {m.title for m in milestones}
         new_milestones = all_fcs - set([i.title for i in milestones])
         for m in new_milestones:
             print(repo.create_milestone(title=m))
-        milestones = list(repo.get_milestones(state="all"))
+        milestones = repo.get_milestones()
         formatted_milestones = {i.title: i for i in milestones}
         for action, items in ddiff.items():
             issue_description = None
