@@ -133,6 +133,7 @@ if __name__ == "__main__":
                         issue_description = f"{str(changes)}"
             for item in items:
                 issue_title_milestone = item.split("root['")[1].split("']")[0]
+                print(issue_title_milestone)
                 issue_title = f"{issue_title_prefix} - {issue_title_milestone}"
                 print(
                     repo.create_issue(
