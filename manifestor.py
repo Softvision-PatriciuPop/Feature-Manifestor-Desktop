@@ -113,7 +113,7 @@ if __name__ == "__main__":
         repo = g.get_repo(os.environ.get("REPO_NAME"))
         milestones = list(repo.get_milestones(state="all"))
         existing_titles = {m.title for m in milestones}
-        new_milestones = all_fcs - set([i.title for i in milestones])
+        new_milestones = all_fcs - existing_titles
         for m in new_milestones:
             print(repo.create_milestone(title=m))
         milestones = repo.get_milestones()
